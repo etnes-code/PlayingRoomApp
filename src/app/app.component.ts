@@ -11,4 +11,10 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'PlayingRoomApp';
+  test: string = 'ok';
+  isClicked: boolean = false;
+
+  public clicked(){
+    this.isClicked ? this.isClicked = false : this.isClicked = true;   
+  }
 }
