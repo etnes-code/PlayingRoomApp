@@ -9,7 +9,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 @Component({
   selector: 'app-all-member',
   standalone: true,
-  imports: [CommonModule, TableModule, ButtonModule, CommonModule],
+  imports: [CommonModule, TableModule, ButtonModule],
   templateUrl: './all-member.component.html',
   styleUrl: './all-member.component.scss'
 })
