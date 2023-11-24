@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Member } from '../models/member';
+import { of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +12,8 @@ export class MemberService {
 
   constructor(private http: HttpClient) { }
 
-  getAllMembers(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  getAllMembers(): Observable<Member[]> {
+    return this.generateFakeMembers(10);
   }
 
   getMemberById(id: number): Observable<any> {
@@ -32,7 +34,31 @@ export class MemberService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<any>(url);
   }
-}
+
+
+
+    // ...
+
+    generateFakeMembers(numMembers: number): Observable<Member[]> {
+      let fakeMembers: Member[] = [];
+
+      for (let i = 0; i < numMembers; i++) {
+        const id = (i + 1).toString();
+        const lastName = `Member ${id} last name`;
+        const firstName = `Member ${id} first name`;
+        const email = `member${id}@example.com`;
+        const konamiId = `member${id}`;
+        const createDate = new Date();
+
+        const member = new Member(id, lastName, firstName, email, konamiId, createDate);
+        fakeMembers.push(member);
+      }
+
+      return of(fakeMembers);
+
+    }
+
+  }
 
   
 
